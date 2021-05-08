@@ -21,12 +21,8 @@ import com.google.firebase.auth.AuthResult;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import tech.geekahmed.diabeticcoma.Helpers.FirebaseService;
 import tech.geekahmed.diabeticcoma.Home.HomeActivity;
-import tech.geekahmed.diabeticcoma.Models.User;
 import tech.geekahmed.diabeticcoma.R;
 
 public class SignInFragment extends Fragment {

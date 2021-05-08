@@ -25,15 +25,12 @@ import com.google.firebase.firestore.GeoPoint;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import tech.geekahmed.diabeticcoma.Helpers.FirebaseService;
 import tech.geekahmed.diabeticcoma.Home.HomeActivity;
-import tech.geekahmed.diabeticcoma.Models.User;
 import tech.geekahmed.diabeticcoma.R;
 
 public class SignUpFragment extends Fragment {

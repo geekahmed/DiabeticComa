@@ -12,7 +12,6 @@ import com.google.firebase.firestore.GeoPoint;
 import java.lang.reflect.Array;
 import java.util.Map;
 
-import tech.geekahmed.diabeticcoma.Models.EmergencyNumber;
 
 
 // Implement Singleton
