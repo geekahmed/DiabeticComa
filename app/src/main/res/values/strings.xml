@@ -31,7 +31,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="history">History</string>
-    <string name="settings">Settings</string>
     <string name="raspberry_pi_id">Raspberry PI ID</string>
     <string name="submit">Submit</string>
     <string name="emergency_numbers">Emergency Numbers</string>
