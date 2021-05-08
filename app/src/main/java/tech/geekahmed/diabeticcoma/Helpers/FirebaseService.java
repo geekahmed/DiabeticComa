@@ -1,20 +1,13 @@
 package tech.geekahmed.diabeticcoma.Helpers;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Map;
 
-import tech.geekahmed.diabeticcoma.Models.User;
 
 // Implement Singleton
 public class FirebaseService {
@@ -35,13 +28,13 @@ public class FirebaseService {
     }
 
     // Sign Up
-    public Task<AuthResult> signUp(User user){
-        return mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword());
+    public Task<AuthResult> signUp(String email, String password){
+        return mAuth.createUserWithEmailAndPassword(email, password);
     }
 
     // Sign In
-    public Task<AuthResult> signIn(User user){
-        return mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword());
+    public Task<AuthResult> signIn(String email, String password){
+        return mAuth.signInWithEmailAndPassword(email, password);
     }
 
     // Get Current User

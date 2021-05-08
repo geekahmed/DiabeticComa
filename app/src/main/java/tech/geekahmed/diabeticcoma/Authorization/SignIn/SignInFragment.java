@@ -32,7 +32,6 @@ import tech.geekahmed.diabeticcoma.R;
 public class SignInFragment extends Fragment {
     private Button signInButton;
     private EditText email, password;
-    private User user;
     private ProgressBar progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,15 +52,15 @@ public class SignInFragment extends Fragment {
 
     private void initListeners(){
         signInButton.setOnClickListener(v -> {
-            user = new User(email.getText().toString().trim(), password.getText().toString().trim());
             progressBar.setVisibility(View.VISIBLE);
             enableViews(false);
             FirebaseService firebaseService = FirebaseService.getInstance();
-            firebaseService.signIn(user).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            firebaseService.signIn(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         startActivity(new Intent(requireActivity(), HomeActivity.class));
+                        requireActivity().finish();
                     } else {
                         Toast.makeText(requireActivity(), "Login Failed ", Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);

@@ -19,11 +19,15 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.GeoPoint;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,27 +83,41 @@ public class SignUpFragment extends Fragment {
                 );
 
             if (validation.validate()) {
-                User user = new User();
-                user.setEmail(email.getText().toString().trim());
-                user.setPassword(email.getText().toString().trim());
-                user.setName(firstName.getText().toString().trim().concat(" " + lastName.getText().toString().trim()));
                 progressBar.setVisibility(View.VISIBLE);
                 enableViews(false);
-                FirebaseService.getInstance().signUp(user).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                FirebaseService.getInstance().signUp(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(requireActivity(), "Registration Success ", Toast.LENGTH_SHORT).show();
 
                             Map<String, Object> data = new HashMap<>();
-                            data.put("name", user.getName());
-                            data.put("email", user.getEmail());
-                            data.put("phone_number", user.getPhoneNumber());
+                            Map<String, Object> history = new HashMap<>();
+                            Map<String, Object> history1 = new HashMap<>();
+                            Map<String, Object> history2 = new HashMap<>();
+                            history.put("description", "Hahah");
+                            history.put("location", "Near Sharqia");
+                            history.put("timestamp", Timestamp.now());
 
+                            history1.put("description", "Hahah");
+                            history1.put("location", "Near Sharqia");
+                            history1.put("timestamp", Timestamp.now());
+
+                            history2.put("description", "Hahah");
+                            history2.put("location", "Near Sharqia");
+                            history2.put("timestamp", Timestamp.now());
+
+                            data.put("name", firstName.getText().toString().trim() + " " + lastName.getText().toString().trim());
+                            data.put("email", email.getText().toString().trim());
+                            data.put("phone_number", phone.getText().toString().trim());
+                            data.put("emergency_numbers", Arrays.asList("111", "222"));
+                            data.put("current_location", new GeoPoint(0, 0));
+                            data.put("history", Arrays.asList(history,history1, history2));
                             FirebaseService.getInstance().addUserToFireStore(data);
                             startActivity(new Intent(requireActivity(), HomeActivity.class));
+                            requireActivity().finish();
                         } else {
-                            Toast.makeText(requireActivity(), "Failed Registration ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireActivity(), "Registration Failed ", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                             enableViews(true);
                         }

@@ -5,14 +5,13 @@ import android.location.Location;
 import com.google.firebase.Timestamp;
 
 public class History {
-    private String description;
+    private String description, location;
     private Timestamp timestamp;
-    private Location location;
 
-    public History(String description, Timestamp timestamp, Location location) {
+    public History(String description, String location, Timestamp timestamp) {
         this.description = description;
-        this.timestamp = timestamp;
         this.location = location;
+        this.timestamp = timestamp;
     }
 
     public String getDescription() {
@@ -23,28 +22,19 @@ public class History {
         this.description = description;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    @Override
-    public String toString() {
-        return "History{" +
-                "description='" + description + '\'' +
-                ", timestamp=" + timestamp +
-                ", location=" + location +
-                '}';
     }
 }

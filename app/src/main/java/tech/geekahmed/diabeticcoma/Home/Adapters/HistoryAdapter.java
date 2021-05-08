@@ -1,5 +1,6 @@
 package tech.geekahmed.diabeticcoma.Home.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +19,17 @@ import tech.geekahmed.diabeticcoma.R;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
     private ArrayList<History> histories;
-
-    public HistoryAdapter(ArrayList<History> histories){
+    private LayoutInflater mInflater;
+    public HistoryAdapter(Context context, ArrayList<History> histories){
         this.histories = histories;
+        this.mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @NotNull
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.coma_history_item, parent, false);
+        View view = mInflater.inflate(R.layout.coma_history_item, parent, false);
 
         return new HistoryViewHolder(view);
     }
@@ -36,8 +37,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull @NotNull HistoryAdapter.HistoryViewHolder holder, int position) {
             holder.coma_time.setText(histories.get(position).getTimestamp().toString());
-            holder.coma_location.setText(histories.get(position).getLocation().toString());
-            holder.coma_disc.setText(histories.get(position).getLocation().toString());
+            holder.coma_location.setText(histories.get(position).getLocation());
+            holder.coma_disc.setText(histories.get(position).getDescription());
     }
 
     @Override
@@ -46,7 +47,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
 
-    protected class HistoryViewHolder extends RecyclerView.ViewHolder {
+    public class HistoryViewHolder extends RecyclerView.ViewHolder {
         private TextView coma_disc, coma_location, coma_time;
         public HistoryViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
