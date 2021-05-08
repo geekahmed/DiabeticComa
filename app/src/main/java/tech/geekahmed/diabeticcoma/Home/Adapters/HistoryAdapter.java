@@ -36,7 +36,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull HistoryAdapter.HistoryViewHolder holder, int position) {
-            holder.coma_time.setText(histories.get(position).getTimestamp().toString());
+            holder.coma_time.setText(histories.get(position).getTimestamp().toDate().toString());
             holder.coma_location.setText(histories.get(position).getLocation());
             holder.coma_disc.setText(histories.get(position).getDescription());
     }

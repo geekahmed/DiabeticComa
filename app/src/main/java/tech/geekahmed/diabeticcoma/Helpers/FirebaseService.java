@@ -6,6 +6,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+
 import java.util.Map;
 
 
@@ -48,7 +50,9 @@ public class FirebaseService {
     }
 
     // Send GPS Data
-
+    public void sendGPSData(GeoPoint geoPoint){
+        firebaseFirestore.collection("users").document(getCurrentUser().getUid()).update("current_location", geoPoint);
+    }
     // Add Emergency Number
 
     // Delete Emergency Number

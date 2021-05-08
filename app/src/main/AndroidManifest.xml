@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tech.geekahmed.diabeticcoma">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +24,12 @@
 
         </activity>
         <activity android:name=".MainActivity"></activity>
+
+        <service
+            android:name=".Helpers.TrackingService"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>
